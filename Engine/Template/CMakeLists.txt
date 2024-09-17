@@ -21,6 +21,7 @@ source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${GAME_SOURCES})
 
 add_executable(${PROJECT_FOLDER} ${GAME_SOURCES})
 
+# Reading the path to the engine, and optimizing it for CMAKE string use
 file(READ "Engine\\Saves\\enginepath.txt" FILE_CONTENT)
 file(TO_CMAKE_PATH "${FILE_CONTENT}" FILE_CONTENT)
 string(STRIP "${FILE_CONTENT}" FILE_CONTENT)
@@ -52,8 +53,8 @@ if(MSVC)
     target_compile_options(${PROJECT_FOLDER} PRIVATE /W4)
 endif()
 
+# The libraries that are in the game engine
 add_subdirectory(${FILE_CONTENT}/Engine Engine)
-add_subdirectory(${FILE_CONTENT}/ThirdParty/sfml ThirdParty/sfml)
 add_subdirectory(${FILE_CONTENT}/ThirdParty ThirdParty)
 add_subdirectory(${FILE_CONTENT}/Framework Framework)
 

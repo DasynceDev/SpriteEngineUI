@@ -17,8 +17,8 @@ spe::Editor::Editor()
 
 	// Loading the sprites from the user directory will be permaent here!
 	spe::Utility::SetCurrentDir(spe::EngineData::s_PathUserProject);
-
 	this->m_SceneHandler.Init(PATH_TO_LIGHT_SHADER);
+
 
 	// Sprite/Background/Camera
 	this->Init();
