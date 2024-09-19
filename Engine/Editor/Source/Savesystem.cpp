@@ -109,6 +109,7 @@ std::string spe::Savesystem::GetPropertyLineWithSeperator(const spe::Sprite* spr
 
 	const std::string render = spe::Utility::BoolToStr(sprite->SpriteRenderer.Render);
 	const std::string friction = std::to_string(sprite->Physicsbody.Friction);
+	const std::string useairfriction = spe::Utility::BoolToStr(sprite->Physicsbody.UseAirFriction);
 
 	//Name, vec, transform path, rotation
 	line = sprite->Name + ";" + "0" + ";" + transformPosX + ";" + transformPosY + ";" + scaleX + ";" + scaleY + ";" + spritePath + ";" + rotation;
@@ -157,7 +158,7 @@ std::string spe::Savesystem::GetPropertyLineWithSeperator(const spe::Sprite* spr
 	line += ";" + render;
 
 	// Physicsbody-add
-	line += ";" + friction;
+	line += ";" + friction + ";" + useairfriction;
 
 	return line;
 }
@@ -173,7 +174,7 @@ void spe::Savesystem::CreateOrUpdatePrefabFile(const spe::Sprite* content, const
 		spe::Utility::Delete(oldFilePath);
 	}
 
-	std::string fileContent = "name;vecpos;transformPosX;transformPosY;ScaleX;ScaleY;filepath;boxColliderWidthLeftOrRightX;boxColliderWidthLeftOrRighY;boxColliderHeightUpOrDownX;boxColliderHeightUpOrDownY;boxColliderExists;solid;sortingLayer;gravity;mass;physicsBodyExists;id;parentId;nextPosX;nextPosY;lastPosX;lastPosY;listPos;highestChild;positionToParentX;positionToParentY;animatorExists;prefabExist;loadInMemory;pathToPrefab;render;friction\n";
+	std::string fileContent = "name;vecpos;transformPosX;transformPosY;ScaleX;ScaleY;filepath;boxColliderWidthLeftOrRightX;boxColliderWidthLeftOrRighY;boxColliderHeightUpOrDownX;boxColliderHeightUpOrDownY;boxColliderExists;solid;sortingLayer;gravity;mass;physicsBodyExists;id;parentId;nextPosX;nextPosY;lastPosX;lastPosY;listPos;highestChild;positionToParentX;positionToParentY;animatorExists;prefabExist;loadInMemory;pathToPrefab;render;friction;useairfriction\n";
 
 	std::string s;
 	s.push_back(PREFAB_DELIMITER);
@@ -245,7 +246,7 @@ void spe::Savesystem::UpdateSpriteFile(const spe::SpriteRepository& repo)
 
 	if (spriteFile.is_open())
 	{
-		spriteFile << "name;vecpos;transformPosX;transformPosY;ScaleX;ScaleY;rotation;filepath;boxColliderWidthLeftOrRightX;boxColliderWidthLeftOrRighY;boxColliderHeightUpOrDownX;boxColliderHeightUpOrDownY;boxColliderExists;solid;sortingLayer;gravity;mass;physicsBodyExists;id;parentId;nextPosX;nextPosY;lastPosX;lastPosY;listPos;highestChild;positionToParentX;positionToParentY;animatorExists;prefabExist;loadInMemory;pathToPrefab;tag;lightExist;lightRadius;lightIntensity;render" << "\n";
+		spriteFile << "name;vecpos;transformPosX;transformPosY;ScaleX;ScaleY;rotation;filepath;boxColliderWidthLeftOrRightX;boxColliderWidthLeftOrRighY;boxColliderHeightUpOrDownX;boxColliderHeightUpOrDownY;boxColliderExists;solid;sortingLayer;gravity;mass;physicsBodyExists;id;parentId;nextPosX;nextPosY;lastPosX;lastPosY;listPos;highestChild;positionToParentX;positionToParentY;animatorExists;prefabExist;loadInMemory;pathToPrefab;tag;lightExist;lightRadius;lightIntensity;render;useairfriction" << "\n";
 		const std::list<spe::Sprite*>& sprites = repo.GetSpritesC();
 
 		for (auto it = sprites.begin(); it != sprites.end(); ++it)

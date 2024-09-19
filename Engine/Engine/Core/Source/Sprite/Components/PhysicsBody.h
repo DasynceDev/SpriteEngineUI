@@ -19,7 +19,7 @@ namespace spe
 		spe::Vector2 Velocity;
 		spe::Sprite* ptr_Sprite;
 		float Friction;
-
+		bool UseAirFriction;
 
 		PhsysicsBody();
 		PhsysicsBody(spe::Sprite* spr);

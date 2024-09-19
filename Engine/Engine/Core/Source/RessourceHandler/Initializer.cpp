@@ -283,6 +283,11 @@ spe::Sprite* spe::Initializer::InitSprite(const std::string& line, spe::LightRep
 	{
 		sprite->Physicsbody.Friction = std::stof(propertys[41]);
 	}
+
+	if (propertys.size() >= 43)
+	{
+		sprite->Physicsbody.UseAirFriction = propertys[42] == "True";
+	}
 #pragma endregion
 
 	sprite->Transform.SetOrigin();

@@ -671,10 +671,10 @@ void spe::UIInspector::PhysicsBodyComponent()
 		ImGui::Dummy(ImVec2(0, 5));
 
 		ImGui::SetCursorPosX(55);
-		ImGui::Text("Friction");
+		ImGui::Text("Use Air Friction");
 		ImGui::PushItemWidth(55);
-		ImGui::SetCursorPos(ImVec2(x, y += 40.0f));
-		ImGui::InputFloat("##friction", &this->m_ptr_GUIRepo->InspectorSprite->Physicsbody.Friction, 0, 0, "%g");
+		ImGui::SetCursorPos(ImVec2(x += 20, y += 40.0f));
+		ImGui::Checkbox("##air-friction", &this->m_ptr_GUIRepo->InspectorSprite->Physicsbody.UseAirFriction);
 		ImGui::PopItemWidth();
 
 		if (this->m_ptr_GUIRepo->SimulatePhysics)

@@ -23,6 +23,7 @@ spe::PhsysicsBody::PhsysicsBody(spe::Sprite* spr, const spe::PhsysicsBody& rhs)
 	this->Exist = rhs.Exist;
 	this->Gravity = rhs.Gravity;
 	this->Friction = rhs.Friction;
+	this->UseAirFriction = rhs.UseAirFriction;
 }
 
 void spe::PhsysicsBody::Init()
@@ -33,11 +34,12 @@ void spe::PhsysicsBody::Init()
 	this->Gravity = 0.0f;
 	this->Mass = 0.0f;
 	this->Friction = 0.0f;
+	this->UseAirFriction = false;
 }
 
 void spe::PhsysicsBody::UpdateFriction()
 {
-	if (this->ptr_Sprite->Collider.Down)
+	if (this->ptr_Sprite->Collider.Down || this->ptr_Sprite->Physicsbody.UseAirFriction) 
 	{
 		// Apply friction based on deltaTime
 		this->Velocity.X *= (1 - this->Friction * spe::Time::s_DeltaTime);

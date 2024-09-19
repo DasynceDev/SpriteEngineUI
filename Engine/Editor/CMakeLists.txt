@@ -22,8 +22,6 @@ target_link_libraries(${EDITOR_NAME} PRIVATE
     Core
 )
 
-target_include_directories(Core PRIVATE "${EXTERNAL_LIBRARIES_FOLDER}/imgui")
-
 # Set debug and release directories
 file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/Editor/Debug)
 file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/Editor/Release)
