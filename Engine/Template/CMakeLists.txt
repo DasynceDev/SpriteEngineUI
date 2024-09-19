@@ -87,3 +87,7 @@ elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
             ${SFML_DLL_DIR}/Release/sfml-window-2.dll $<TARGET_FILE_DIR:${PROJECT_FOLDER}>
     )
 endif()
+
+if (MSVC)
+    add_compile_options(/MP)
+endif()
