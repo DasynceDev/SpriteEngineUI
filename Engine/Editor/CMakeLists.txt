@@ -60,4 +60,5 @@ endif()
 
 if(MSVC)
     target_compile_options(${EDITOR_NAME} PRIVATE /W4)
+    add_compile_options(/MP)
 endif()

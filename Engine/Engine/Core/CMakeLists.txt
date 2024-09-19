@@ -37,4 +37,5 @@ set_target_properties(Core PROPERTIES FOLDER "Engine")
 
 if(MSVC)
     target_compile_options(Core PUBLIC /W4)
+    add_compile_options(/MP)
 endif()

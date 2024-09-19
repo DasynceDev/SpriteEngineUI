@@ -17,4 +17,5 @@ set_target_properties(Framework PROPERTIES FOLDER "Engine")
 
 if(MSVC)
     target_compile_options(Framework PUBLIC /W4)
+    add_compile_options(/MP)
 endif()

@@ -24,4 +24,5 @@ set_target_properties(Math PROPERTIES FOLDER "Engine")
 
 if(MSVC)
     target_compile_options(Math PUBLIC /W4)
+    add_compile_options(/MP)
 endif()
