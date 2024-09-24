@@ -55,6 +55,7 @@ namespace spe
         spe::Sprite* GetByName(const std::string& name) override;
         uint32_t GetHighestLayer() const { return this->m_HighestLayer; }
         uint32_t GetHighestId() const { return this->m_HighestId; }
+        void GetSpritesByTag(const std::string& tag, std::vector<spe::Sprite*>& sprites);
 
         /// <summary>
         /// Kinda inefficent. Try not to use much

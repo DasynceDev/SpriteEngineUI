@@ -173,6 +173,11 @@ void spe::BoxCollider::Reset()
 
 void spe::BoxCollider::Update(spe::SpriteRepository& tocheck)
 {
+    if (!this->Exist || !this->ptr_Sprite->Physicsbody.Exist)
+    {
+        return;
+    }
+
     spe::Sprite* sprite = this->ptr_Sprite;
 
     sprite->Collider.CollidedInFrame = false;

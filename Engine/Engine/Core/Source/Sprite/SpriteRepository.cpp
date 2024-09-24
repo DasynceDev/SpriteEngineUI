@@ -119,6 +119,18 @@ spe::Sprite* spe::SpriteRepository::GetByName(const std::string& name)
     throw std::out_of_range("Sprite with name was not found");
 }
 
+void spe::SpriteRepository::GetSpritesByTag(const std::string& tag, std::vector<spe::Sprite*>& sprites)
+{
+    for (auto it = this->m_Sprites.begin(); it != this->m_Sprites.end(); ++it)
+    {
+        spe::Sprite* sprite = *it;
+        if (sprite->Tag == tag)
+        {
+            sprites.push_back(sprite);
+        }
+    }
+}
+
 bool spe::SpriteRepository::ExistWithId(uint32_t id)
 {
     for (auto it = this->m_Sprites.begin(); it != this->m_Sprites.end(); ++it)

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Sprite/Sprite.h"
+#include <random>
 
 namespace spe
 {
@@ -11,7 +12,7 @@ namespace spe
 		GameUtils() = delete;
 
 		static bool IsLeft(spe::Sprite* maybe_left, spe::Sprite* maybe_right);
-
+		static int32_t Random(int32_t mix, int32_t max);
 	};
 }
 

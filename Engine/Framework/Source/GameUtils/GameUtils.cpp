@@ -9,3 +9,16 @@ bool spe::GameUtils::IsLeft(spe::Sprite* maybe_left, spe::Sprite* maybe_right)
     // Return true if maybe_left is to the left of maybe_right
     return x_left < x_right;
 }
+
+int32_t spe::GameUtils::Random(int32_t min, int32_t max)
+{
+    std::random_device rd;
+
+    std::mt19937 gen(rd());
+
+    // Define the distribution range
+    std::uniform_int_distribution<> distr(min, max);
+
+    // Generate a random number within the range
+    return distr(gen);
+}
