@@ -290,6 +290,12 @@ spe::Sprite* spe::Initializer::InitSprite(const std::string& line, spe::LightRep
 	}
 #pragma endregion
 
+#pragma region Collider-Performance
+	if (propertys.size() >= 44)
+	{
+		sprite->Collider.Controller = propertys[43] == "True";
+	}
+#pragma endregion
 	sprite->Transform.SetOrigin();
 
 	return sprite;

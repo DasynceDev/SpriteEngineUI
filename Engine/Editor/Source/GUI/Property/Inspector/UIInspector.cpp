@@ -622,6 +622,7 @@ void spe::UIInspector::BoxColliderComponent()
 		this->m_Collider.Solid(x, y, this->m_ptr_GUIRepo->InspectorSprite);
 		this->m_Collider.Width(x, y, this->m_ptr_GUIRepo->InspectorSprite);
 		this->m_Collider.Height(this->m_ptr_GUIRepo->InspectorSprite);
+		this->m_Collider.Controller(x,y,this->m_ptr_GUIRepo->InspectorSprite);
 
 		ImGui::TreePop();
 

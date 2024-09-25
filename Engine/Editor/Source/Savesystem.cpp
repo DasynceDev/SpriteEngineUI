@@ -111,6 +111,8 @@ std::string spe::Savesystem::GetPropertyLineWithSeperator(const spe::Sprite* spr
 	const std::string friction = std::to_string(sprite->Physicsbody.Friction);
 	const std::string useairfriction = spe::Utility::BoolToStr(sprite->Physicsbody.UseAirFriction);
 
+	const std::string isController = spe::Utility::BoolToStr(sprite->Collider.Controller);
+
 	//Name, vec, transform path, rotation
 	line = sprite->Name + ";" + "0" + ";" + transformPosX + ";" + transformPosY + ";" + scaleX + ";" + scaleY + ";" + spritePath + ";" + rotation;
 
@@ -160,6 +162,9 @@ std::string spe::Savesystem::GetPropertyLineWithSeperator(const spe::Sprite* spr
 	// Physicsbody-add
 	line += ";" + friction + ";" + useairfriction;
 
+	// Collider-Performance
+	line += ";" + isController;
+
 	return line;
 }
 
@@ -174,7 +179,7 @@ void spe::Savesystem::CreateOrUpdatePrefabFile(const spe::Sprite* content, const
 		spe::Utility::Delete(oldFilePath);
 	}
 
-	std::string fileContent = "name;vecpos;transformPosX;transformPosY;ScaleX;ScaleY;filepath;boxColliderWidthLeftOrRightX;boxColliderWidthLeftOrRighY;boxColliderHeightUpOrDownX;boxColliderHeightUpOrDownY;boxColliderExists;solid;sortingLayer;gravity;mass;physicsBodyExists;id;parentId;nextPosX;nextPosY;lastPosX;lastPosY;listPos;highestChild;positionToParentX;positionToParentY;animatorExists;prefabExist;loadInMemory;pathToPrefab;render;friction;useairfriction\n";
+	std::string fileContent = "name;vecpos;transformPosX;transformPosY;ScaleX;ScaleY;filepath;boxColliderWidthLeftOrRightX;boxColliderWidthLeftOrRighY;boxColliderHeightUpOrDownX;boxColliderHeightUpOrDownY;boxColliderExists;solid;sortingLayer;gravity;mass;physicsBodyExists;id;parentId;nextPosX;nextPosY;lastPosX;lastPosY;listPos;highestChild;positionToParentX;positionToParentY;animatorExists;prefabExist;loadInMemory;pathToPrefab;render;friction;useairfriction;controller\n";
 
 	std::string s;
 	s.push_back(PREFAB_DELIMITER);

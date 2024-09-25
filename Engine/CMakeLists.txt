@@ -10,6 +10,10 @@ set(EXTERNAL_LIBRARIES_FOLDER ${CMAKE_SOURCE_DIR}/ThirdParty)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+if (MSVC)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP")
+endif()
+
 # Add the subprojects
 add_subdirectory(Engine)
 add_subdirectory(Editor)

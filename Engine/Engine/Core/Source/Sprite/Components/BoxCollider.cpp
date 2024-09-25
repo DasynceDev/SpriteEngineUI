@@ -18,6 +18,7 @@ spe::BoxCollider::BoxCollider(spe::Sprite* sprite, spe::BoxCollider& rhs)
     this->Width = rhs.Width;
     this->Exist = rhs.Exist;
     this->IsSolid = rhs.IsSolid;
+    this->Controller = rhs.Controller;
 }
 
 spe::BoxCollider::BoxCollider(spe::Sprite* ptr_sprite)
@@ -44,6 +45,8 @@ void spe::BoxCollider::Init()
     this->m_GotLeft = false;
     this->m_GotRight = false;
     this->m_GotUp = false;
+
+    this->Controller = false;
 }
 
 bool spe::BoxCollider::CheckCollision(spe::BoxCollider& other)
@@ -173,7 +176,7 @@ void spe::BoxCollider::Reset()
 
 void spe::BoxCollider::Update(spe::SpriteRepository& tocheck)
 {
-    if (!this->Exist || !this->ptr_Sprite->Physicsbody.Exist)
+    if (!this->Controller)
     {
         return;
     }

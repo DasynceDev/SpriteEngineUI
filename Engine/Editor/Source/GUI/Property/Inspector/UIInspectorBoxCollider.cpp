@@ -212,6 +212,16 @@ void spe::UIInspectorBoxCollider::Width(float x, float y, spe::Sprite* sprite)
 	}
 }
 
+void spe::UIInspectorBoxCollider::Controller(float x, float y, spe::Sprite* sprite)
+{
+	ImGui::Text("Conroller (Can move?)");
+	ImGui::SameLine();
+	ImGui::SetWindowFontScale(spe::Style::s_DefaultFontSize);
+	ImGui::Checkbox("##controller", &sprite->Collider.Controller);
+	ImGui::SetWindowFontScale(spe::Style::s_DefaultFontSize);
+	ImGui::Dummy(ImVec2(0, 5));
+}
+
 void spe::UIInspectorBoxCollider::Height(spe::Sprite* sprite)
 {
 	float x = ImGui::GetCursorPosX();

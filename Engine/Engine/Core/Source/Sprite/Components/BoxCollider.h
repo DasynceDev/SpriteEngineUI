@@ -48,6 +48,7 @@ namespace spe
 
 		Vector2 Width;
 		Vector2 Height;
+		bool Controller;
 
 		BoxCollider();
 		BoxCollider(spe::Sprite* sprite, spe::BoxCollider& rhs);

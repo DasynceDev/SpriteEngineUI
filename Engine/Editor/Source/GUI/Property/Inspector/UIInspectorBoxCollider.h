@@ -34,6 +34,7 @@ namespace spe
 		void Edit(float& x, float& y);
 		void Solid(float& x, float& y, spe::Sprite* sprite);
 		void Width(float x, float y, spe::Sprite* sprite);
+		void Controller(float x, float y, spe::Sprite* sprite);
 		void Height(spe::Sprite* sprite);
 		void DrawBoxCollider(spe::Sprite* sprite, spe::Rectangle* ptr_rectangle);
 
