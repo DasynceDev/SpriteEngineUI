@@ -27,10 +27,12 @@ namespace spe
 
     void LightRepository::UpdateLightSource(spe::Sprite* sprite, spe::Camera* cam)
     {
-        if (!sprite->Light.Exist)
+        if (!sprite->Light.Exist || !sprite->Process)
         {
             return;
         }
+
+        m_Update = true;
 
         uint32_t idx = sprite->Light.GetLightIndex();
         spe::LightSource& source = m_LightSources[idx];
@@ -38,7 +40,6 @@ namespace spe
         if (sprite->Transform.PositionChanged || cam->HasZoomChanged())
         {
             sprite->Transform.PositionChanged = false;
-            m_Update = true;
 
             float zoom = cam->GetZoom() - 1;
 
@@ -49,24 +50,21 @@ namespace spe
         }
         if (sprite->Light.HasRadiusChanged())
         {
-            m_Update = true;
-
-            sprite->Light.SetRadiosChangeFlagFalse();
             source.Radius = sprite->Light.GetRadius();
         }
         if (sprite->Light.HasIntensityChanged())
         {
-            m_Update = true;
-
-            sprite->Light.SetIntensityChangeFlagFalse();
             source.LightIntensity = sprite->Light.GetIntensity();
+
         }
         if (sprite->Light.HasColorChanged())
         {
-            m_Update = true;
-
-            sprite->Light.SetColorChangeFlag();
             source.Color = sprite->Light.GetColor();
+        }
+
+        if (m_Update)
+        {
+            sprite->Light.DisableFlags();
         }
     }
 
@@ -124,46 +122,43 @@ namespace spe
 
     void LightRepository::UpdateArrays()
     {
-        if (!m_Update)
+        if (!this->m_Update)
         {
             return;
         }
-        m_Update = false;
-        size_t size = m_LightSources.size();
 
-        if (size == 0)
-        {
-            size++;
-        }
+        m_Update = false;
+        size_t size = 0;
+
         std::vector<sf::Vector2f> lightPositions(size);
         std::vector<float> lightRadii(size);
         std::vector<float> lightIntensities(size);
         std::vector<sf::Vector3f> lightColors(size);
 
-        lightPositions[0] = sf::Vector2f(0, 0);
-        lightRadii[0] = 0;
-        lightIntensities[0] = 0;
-        lightColors[0] = sf::Vector3f(0, 0, 0);
 
-        size_t i = 0;
-        for (const auto& pair : m_LightSources)
+        for (auto& pair : m_LightSources)
         {
-            const LightSource& source = pair.second;
+            LightSource& source = pair.second;
             if (source.Process)
             {
-                lightPositions[i] = spe::Vector2::toSFVector(source.Position);
-                lightRadii[i] = source.Radius;
-                lightIntensities[i] = source.LightIntensity;
-                lightColors[i] = sf::Vector3f(source.Color.x, source.Color.y, source.Color.z);
+                lightPositions.push_back(spe::Vector2::toSFVector(source.Position));
+                lightRadii.push_back(source.Radius);
+                lightIntensities.push_back(source.LightIntensity);
+                lightColors.push_back(sf::Vector3f(source.Color.x, source.Color.y, source.Color.z));
+                size++;
             }
-            i++;
         }
 
-        m_LightShader.setUniform("lightAmount", static_cast<int>(size));
-        m_LightShader.setUniformArray("lightPositions", lightPositions.data(), size);
-        m_LightShader.setUniformArray("lightRadii", lightRadii.data(), size);
-        m_LightShader.setUniformArray("lightIntensities", lightIntensities.data(), size);
-        m_LightShader.setUniformArray("lightColors", lightColors.data(), size);
+        if (size > 0)
+        {
+            std::cout << "seting u " << size << std::endl;
+            m_LightShader.setUniform("lightAmount", static_cast<int>(size));
+            m_LightShader.setUniformArray("lightPositions", lightPositions.data(), size);
+            m_LightShader.setUniformArray("lightRadii", lightRadii.data(), size);
+            m_LightShader.setUniformArray("lightIntensities", lightIntensities.data(), size);
+            m_LightShader.setUniformArray("lightColors", lightColors.data(), size);
+        }
+  
     }
 
     sf::Vector2f* LightRepository::GetPositionArray()

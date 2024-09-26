@@ -19,6 +19,7 @@ namespace spe
         uint32_t m_Index;
         bool m_Update;
 
+
         sf::Vector2f* GetPositionArray();
 
     public:

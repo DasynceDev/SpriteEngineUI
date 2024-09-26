@@ -43,18 +43,17 @@ namespace spe
 		const sf::Vector3f& GetColor() const noexcept { return this->m_Color; }
 		void SetColor(const sf::Vector3f& color) noexcept;
 		bool HasColorChanged() const noexcept { return this->m_ColorChanged; }
-		void SetColorChangeFlag() noexcept { this->m_ColorChanged = false; }
 
 
 		void SetIntensity(float intense) noexcept;
 		float GetIntensity() const noexcept { return this->m_Intensity; }
 		bool HasIntensityChanged() const noexcept { return this->m_IntensityChanged; }
-		void SetIntensityChangeFlagFalse() noexcept { this->m_IntensityChanged = false; }
 
 		void SetRadius(float radius) noexcept;
 		float GetRadius() const noexcept { return this->m_Radius; }
 		bool HasRadiusChanged() const noexcept  { return this->m_RadiusChanged; }
-		void SetRadiosChangeFlagFalse() noexcept { this->m_RadiusChanged = false; };
+
+		void DisableFlags();
 
 		void DisableProcess();
 		void EnableProcess();

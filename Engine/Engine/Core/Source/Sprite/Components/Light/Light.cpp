@@ -108,6 +108,13 @@ void spe::Light::SetRadius(float radius) noexcept
 	this->m_RadiusChanged = true;
 }
 
+void spe::Light::DisableFlags()
+{
+	this->m_IntensityChanged = false;
+	this->m_RadiusChanged = false;
+	this->m_ColorChanged = false;
+}
+
 void spe::Light::DisableProcess()
 {
 	if (this->m_ptr_LightSource != nullptr)

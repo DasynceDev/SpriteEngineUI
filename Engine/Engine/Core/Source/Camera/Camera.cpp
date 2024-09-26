@@ -52,7 +52,8 @@ void spe::Camera::Update(spe::LightRepository* lightrepo)
 	sf::Vector2f a = sf::Vector2f(defaultPos.X - 960, defaultPos.Y - 540);
 	shader.setUniform("cameraPosition", a);
 	shader.setUniform("cameraZoom", this->m_CameraZoom);
-	// std::cout << this->camera_zoom << std::endl;
+
+	this->m_ZoomChanged = false;
 }
 
 spe::Vector2 spe::Camera::GetDefaultPosition() noexcept
