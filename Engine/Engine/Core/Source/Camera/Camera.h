@@ -23,7 +23,7 @@ namespace spe
 		float CameraSpeed;
 
 		Camera();
-		Camera(sf::RenderWindow* ptr, spe::SpriteRepository& repository);
+		Camera(spe::SpriteRepository& repository);
 
 		[[nodiscard]] bool HasZoomChanged() const noexcept { return this->m_ZoomChanged; }
 		void SetZoomFlag() noexcept { this->m_ZoomChanged = false; }

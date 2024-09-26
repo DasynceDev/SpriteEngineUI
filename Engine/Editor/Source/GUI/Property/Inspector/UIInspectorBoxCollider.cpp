@@ -212,7 +212,7 @@ void spe::UIInspectorBoxCollider::Width(float x, float y, spe::Sprite* sprite)
 	}
 }
 
-void spe::UIInspectorBoxCollider::Controller(float x, float y, spe::Sprite* sprite)
+void spe::UIInspectorBoxCollider::Controller(spe::Sprite* sprite)
 {
 	ImGui::Text("Conroller (Can move?)");
 	ImGui::SameLine();

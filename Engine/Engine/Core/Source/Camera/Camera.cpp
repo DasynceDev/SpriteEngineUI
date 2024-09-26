@@ -10,7 +10,7 @@ spe::Camera::Camera()
 	this->m_ZoomChanged = false;
 }
 
-spe::Camera::Camera(sf::RenderWindow* ptr, spe::SpriteRepository& repo)
+spe::Camera::Camera(spe::SpriteRepository& repo)
 {
 	spe::Vector2 defaultPos = this->GetDefaultPosition();
 

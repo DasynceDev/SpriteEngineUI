@@ -177,7 +177,7 @@ bool spe::Animation::TryChangeKeyFramePos(int old, int newpos)
 			if (i > 0)
 			{
 				spe::KeyFrame& back = this->m_Keyframes[i - 1];
-				back_pos = back.position;
+				back_pos = (float)back.position;
 			}
 
 			if (!(i == this->m_Keyframes.size() - 1))
@@ -191,7 +191,7 @@ bool spe::Animation::TryChangeKeyFramePos(int old, int newpos)
 			const float POS = frame.delay - delay;
 
 			frame.delay = delay;
-			frame.position -= POS;
+			frame.position -= (uint32_t)POS;
 
 			return true;
 		}

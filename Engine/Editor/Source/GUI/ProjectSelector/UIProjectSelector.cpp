@@ -355,7 +355,7 @@ void spe::UIProjectSelector::RenderProjectData()
 					spe::EngineData::s_NameOfUser = this->m_Projects[i].Name;
 					this->m_IsOpen = false;
 					const std::string buildFolder = "mkdir " + this->m_Projects[i].AbsulutePath + "\\Build";
-					spe:Utility::RunCommand(buildFolder.c_str());
+					spe::Utility::RunCommand(buildFolder.c_str());
 				}
 			}
 		}
