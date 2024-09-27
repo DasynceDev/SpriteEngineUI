@@ -62,10 +62,7 @@ namespace spe
             source.Color = sprite->Light.GetColor();
         }
 
-        if (m_Update)
-        {
-            sprite->Light.DisableFlags();
-        }
+        sprite->Light.DisableFlags();
     }
 
     void LightRepository::UpdateSprite(spe::Sprite* sprite, spe::Camera* cam)
@@ -151,7 +148,6 @@ namespace spe
 
         if (size > 0)
         {
-            std::cout << "seting u " << size << std::endl;
             m_LightShader.setUniform("lightAmount", static_cast<int>(size));
             m_LightShader.setUniformArray("lightPositions", lightPositions.data(), size);
             m_LightShader.setUniformArray("lightRadii", lightRadii.data(), size);
