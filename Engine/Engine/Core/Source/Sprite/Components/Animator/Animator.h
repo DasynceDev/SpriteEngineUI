@@ -42,6 +42,7 @@ namespace spe
 		void Update();
 
 		void Reset() override;
+		void ReloadTextures();
 
 		const AnimationPlaying& GetAnimationPlaying() const noexcept { return this->m_AnimationPlaying; }	
 	};

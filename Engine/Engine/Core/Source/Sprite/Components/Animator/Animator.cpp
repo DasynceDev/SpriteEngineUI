@@ -117,6 +117,15 @@ void spe::Animator::Reset()
 	this->Animations.clear();
 }
 
+void spe::Animator::ReloadTextures()
+{
+	EXIST_COMPONENT;
+	for (auto& anim : this->Animations)
+	{
+		anim.second.RealoadTextures();
+	}
+}
+
 //Static functions
 
 //void spe::Animator::stopAllAnimations(spe::SpriteRepository& toUpdate)

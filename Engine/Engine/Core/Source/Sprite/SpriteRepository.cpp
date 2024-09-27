@@ -182,6 +182,7 @@ void spe::SpriteRepository::ReloadTextures()
     {
         spe::Sprite* element = *it;
         element->SetSpriteTexture(element->SpriteRenderer.Path);
+        element->Animator.ReloadTextures();
     }
 }
 

@@ -376,7 +376,10 @@ void spe::UITopbar::BuildProjectIntoFolder()
 		{
 			spe::EngineData::BuildProject();
 		}
-
+		if (ImGui::MenuItem("Reload Texturess", "CTRL + R"))
+		{
+			this->m_ptr_Repo->ReloadTextures();
+		}
 		if (ImGui::MenuItem("Update Project"))
 		{
 			spe::EngineData::BuildProjectFiles();
@@ -425,6 +428,13 @@ void spe::UITopbar::Hotkeys()
 	{
 		spe::EngineData::BuildProject();
 	}
+
+	if (spe::Input::OnKeyHold(spe::KeyBoardCode::LControl)
+		&& spe::Input::OnKeyPress(spe::KeyBoardCode::R))
+	{
+		this->m_ptr_Repo->ReloadTextures();
+	}
+
 }
 
 void spe::UITopbar::CreateScene()
